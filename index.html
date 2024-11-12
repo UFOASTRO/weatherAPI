@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-slate-600">
+    
+
+    <div class=" error hidden  items-center p-4  text-sm text-red-800 rounded-lg bg-red-50 0 w-5/12 m-auto mt-2 dark:text-red-400" role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2"/>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium text-center">Error</span> Please input a valid city.
+        </div>
+      </div>
+
+    
+</div>
+
+    <div
+        class="container bg-blue-600 w-4/12 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white m-auto py-10 px-7 rounded-3xl text-center mt-10">
+        <div class="search flex justify-between">
+            <input type="text" name="" placeholder="Enter city name " spellcheck="false"
+                class="px-7 py-3 rounded-full cityname text-gray-800" />
+            <button class="bg-white rounded-full p-2 searchbutton">
+                <i
+                    class="fa-solid fa-magnifying-glass text-gray-500 text-xl text-center h-10 w-10 flex justify-center pt-2"></i>
+            </button>
+        </div>
+        <div class="weather hidden">
+            <img src="images/rain.png" alt="" class="m-auto h-5/12 w-5/12 weatherIcon" />
+            <h1 class="temp text-8xl font-bold">22°c</h1>
+            <h1 class="city text-4xl font-bold">New York</h1>
+            <div class="details flex justify-between items-start px-5 mt-12">
+                <!-- Humidity Section -->
+                <div class="flex flex-col items-center">
+                    <img src="images/humidity.png" alt="Humidity Icon" class="m-auto pt-6 h-8/12 w-8/12" />
+                    <div class="text-center">
+                        <p class="humidity text-white">50%</p>
+                        <p class="text-white">Humidity</p>
+                    </div>
+                </div>
+
+                <!-- Wind Speed Section -->
+                <div class="flex flex-col items-center ">
+                    <img src="images/wind.png" alt="Wind Speed Icon" class="m-auto pt-3 h-8/12 w-8/12" />
+                    <div class="text-center">
+                        <p class="wind text-white">15km/h</p>
+                        <p class="text-white">Wind speed</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        const apiKey="087300a952fd02d0c4b4049f46ccc312";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+        const cityname = document.querySelector('.cityname');
+        const searchbtn = document.querySelector('.searchbutton');
+        let weatherIcon = document.querySelector('.weatherIcon');
+
+        async function checkWeather(city){
+            const response = await fetch(apiUrl + city +`&appid=${apiKey}`);
+            if (response.status == 404 || cityname.value === "") {
+               document.querySelector('.error').style.display = 'flex';
+            }
+            else{
+                var data = await response.json();
+            document.querySelector('.city').textContent = data.name;
+            document.querySelector('.wind').textContent = data.wind.speed + 'km/h';
+            document.querySelector('.temp').textContent = Math.round(data.main.temp) + '°C';
+            document.querySelector('.humidity').textContent = data.main.humidity  + "%";
+
+            if(data.weather[0].main == 'Clouds'){
+                weatherIcon.src = "images/clouds.png";
+            }
+            else if(data.weather[0].main == 'Rain'){
+                weatherIcon.src = "images/rain.png";
+            }
+            else if(data.weather[0].main == 'Clear'){
+                weatherIcon.src = "images/clear.png";
+            }
+            else if(data.weather[0].main == 'Snow'){
+                weatherIcon.src = "images/snow.png";
+            }
+            else if(data.weather[0].main == 'Thunderstorm'){
+                weatherIcon.src = "images/storm.png";
+            }
+            else if(data.weather[0].main == 'mist'){
+                weatherIcon.src = "images/mist.png";
+            }
+            else if(data.weather[0].main == 'drizzle'){
+                weatherIcon.src = "images/drizzle.png";
+            }
+            document.querySelector('.weather').style.display = 'block';
+            document.querySelector('.error').style.display = 'none';
+        }
+        
+    }
+    searchbtn.addEventListener('click',()=>{
+        checkWeather(cityname.value);
+    })
+           
+    </script>
+</body>
+
+</html>
