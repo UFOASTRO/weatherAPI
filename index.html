@@ -15,15 +15,17 @@
                 },
             },
         };
-    </script>
+        </script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="images/clouds.png" type="image/x-icon">
+<title>ASTRO'S WEATHER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-slate-600">
-    
-
+<p class="font-bold text-center text-5xl mt-2 headerN" >ASTRO'S WEATHER</p>
     <div class=" error hidden  items-center p-4  text-sm text-red-800 rounded-lg bg-red-50 0 w-5/12 m-auto mt-2 dark:text-red-400" role="alert">
         <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2"/>
@@ -38,7 +40,7 @@
 </div>
 
     <div
-        class="container bg-blue-600 w-4/12 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white m-auto py-10 px-7 rounded-3xl text-center mt-10">
+        class="container bg-blue-600 w-4/12 bg-gradient-to-r  from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white m-auto py-10 px-7 rounded-3xl text-center mt-10">
         <div class="search flex justify-between">
             <input type="text" name="" placeholder="Enter city name " spellcheck="false"
                 class="px-7 py-3 rounded-full cityname text-gray-800" />

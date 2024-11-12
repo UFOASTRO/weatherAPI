@@ -1,0 +1,9 @@
+
+  .headerN {
+    background-image: url('download.gif'); /* Replace with your image URL */
+    background-size: contain;
+    background-clip: text;
+    -webkit-background-clip: text; /* Needed for webkit browsers */
+    color: transparent; /* Hides the original text color */
+  }
+
